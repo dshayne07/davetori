@@ -39,15 +39,26 @@
   }
   @keyframes shimmer { 0% { transform: scale(1); } 100% { transform: scale(1.05) rotate(1deg); } }
   .hero-ornament { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 0.4em; text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 1s 0.2s ease forwards; }
-  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 300; color: var(--blue-deep); line-height: 1.1; opacity: 0; animation: fadeUp 1s 0.4s ease forwards; }
-  .hero h1 em { font-style: italic; color: var(--gold); }
-  .hero-date { margin: 2rem 0; font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-muted); opacity: 0; animation: fadeUp 1s 0.6s ease forwards; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 300; color: var(--blue-deep); line-height: 1.1; opacity: 0; animation: fadeUp 1s 0.4s ease forwards;     text-shadow: -1px 1px 2px #5555555c; }
+  .hero-date { margin: 2rem 0; font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color:#000; font-weight:700; opacity: 0; animation: fadeUp 1s 0.6s ease forwards; }
   .hero-divider { display: flex; align-items: center; gap: 1rem; margin: 1rem 0 2rem; color: var(--gold); opacity: 0; animation: fadeUp 1s 0.7s ease forwards; }
   .hero-divider::before, .hero-divider::after { content: ''; flex: 1; height: 1px; background: var(--gold-light); width: 80px; }
-  .hero-venue { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 3rem; opacity: 0; animation: fadeUp 1s 0.8s ease forwards; }
+  .hero-venue { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); font-weight:700; margin-bottom: 3rem; opacity: 0; animation: fadeUp 1s 0.8s ease forwards; }
   .scroll-hint { position: absolute; bottom: 2.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--gold); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0; animation: fadeUp 1s 1.2s ease forwards; }
   .scroll-hint .arrow { width: 1px; height: 40px; background: var(--gold-light); animation: grow 1.5s ease-in-out infinite; }
   @keyframes grow { 0%,100% { transform: scaleY(0.5); opacity: 0.4; } 50% { transform: scaleY(1); opacity: 1; } }
+
+  .hero-parallax-bg {
+    position: absolute; top: -45%; left: 0; right: -20%; bottom: -45%;
+    background: url('./images/pic4.jpg') center / cover no-repeat;
+    opacity: 0.25; will-change: transform; pointer-events: none;
+  }
+  @media(max-width: 480px) {
+    .hero-parallax-bg { left:-100%;        background-image: url(./images/pic1.jpg);
+        top: -16%; }
+        .scroll-hint{ color: var(--gold-pale); }
+        .scroll-hint .arrow{ background: var(--gold-pale); }    
+  }
 
   .countdown-section { background: var(--blue-deep); padding: 4rem 2rem; text-align: center; }
   .countdown-label { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; color: var(--gold-light); margin-bottom: 2.5rem; }
@@ -60,7 +71,7 @@
   .section-inner { max-width: 900px; margin: 0 auto; }
   .section-tag { font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
   .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 300; color: var(--blue-deep); margin-bottom: 1rem; line-height: 1.2; }
-  .section-body { font-size: 0.9rem; line-height: 1.9; color: var(--text-muted); max-width: 600px; }
+  .section-body { font-size: 0.9rem; line-height: 1.9; color: var(--text); max-width: 600px; }
   .gold-rule { width: 60px; height: 2px; background: var(--gold); margin: 1.5rem 0; }
 
   .story-section { background: white; }
@@ -71,10 +82,17 @@
     border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center;
     border: 1px solid var(--gold-light); gap: 1rem; color: var(--gold);
     font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; position: relative; overflow: hidden;
+        border-radius: 10px;
+            box-shadow: #c3c3c3 3px 3px 3px 3px;
   }
   .story-image-placeholder::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(201,168,76,0.03) 20px, rgba(201,168,76,0.03) 21px); }
 
-  .venue-section { background: var(--blue-pale); }
+  .venue-section { background: var(--blue-pale); position: relative; overflow: hidden; }
+  .venue-parallax-bg {
+    position: absolute; top: -40%; left: 0; right: 0; bottom: 50%;
+    background: url(./images/bluebird.jpg) center / cover no-repeat;
+ will-change: transform; pointer-events: none;
+  }
   .venue-image-large { width: 100%; height: 400px; border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; margin: 3rem 0; border: 1px solid var(--blue-light); background: linear-gradient(135deg, var(--blue-light) 0%, var(--blue-deep) 100%); }
   .venue-image-large img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
   .venue-image-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem 2rem 1rem; background: linear-gradient(0deg, rgba(44,95,122,0.9) 0%, transparent 100%); color: white; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; }
@@ -98,7 +116,20 @@
   .gallery-cell:not(:nth-child(1)) { aspect-ratio: 4/3; }
   .gallery-overlay { position: absolute; inset: 0; background: rgba(44,95,122,0.5); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; color: white; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; }
   .gallery-placeholder-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 1; }
-  .gallery-placeholder-bg { position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 15px, rgba(201,168,76,0.04) 15px, rgba(201,168,76,0.04) 16px); }
+  .gallery-placeholder-bg { position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 15px, rgba(201,168,76,0.04) 15px, rgba(201,168,76,0.04) 16px);     background-image: url(./images/pic2.jpg);
+    background-size: cover; border-radius:10px; }
+  .gallery-cell img { width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; inset: 0; }
+
+  .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; }
+  .lightbox.open { display: flex; }
+  .lightbox-img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); animation: lightboxIn 0.25s ease; }
+  @keyframes lightboxIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+  .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; opacity: 0.7; transition: opacity 0.2s; line-height: 1; }
+  .lightbox-close:hover { opacity: 1; }
+  .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 50%; width: 3rem; height: 3rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; font-size: 1.4rem; }
+  .lightbox-nav:hover { background: rgba(255,255,255,0.25); }
+  .lightbox-prev { left: 1.5rem; }
+  .lightbox-next { right: 1.5rem; }
 
   /* PASSWORD GATE */
   .gate-section {
@@ -131,43 +162,47 @@
   @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
 
   /* GATED CONTENT — hidden until unlocked */
-  .gated-content { display: none; }
-  .gated-content.unlocked { display: block; animation: fadeIn 0.6s ease; }
+  /*.gated-content { display: none; }
+  .gated-content.unlocked { display: block; animation: fadeIn 0.6s ease; }*/
   @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
   /* REGISTRY */
-  .registry-section { background: var(--gold-pale); }
+  .registry-section { background: var(--blue-deep); text-align: center; }
+  .registry-section .section-title, .registry-section .section-body { color: var(--gold-light); margin:0 auto; }
+  .registry-section .gold-rule { margin: 1.5rem auto; }
   .registry-amazon-card {
     background: white; border: 1px solid var(--gold-light); border-radius: 4px;
     padding: 2.5rem; margin-top: 2.5rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;
-    max-width: 500px;
+    max-width: 500px; margin-left: auto; margin-right: auto;
   }
-  .registry-amazon-logo { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--blue-deep); }
+  .registry-amazon-logo { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--blue-deep); margin: 0 auto; }
   .registry-amazon-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; }
   .registry-link-btn {
     display: inline-block; padding: 0.8rem 2rem;
     background: var(--gold); color: white; text-decoration: none;
     font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
-    border-radius: 3px; transition: background 0.2s;
+    border-radius: 3px; transition: background 0.2s; margin:0 auto;
   }
   .registry-link-btn:hover { background: var(--blue-deep); }
 
   /* RSVP */
-  .rsvp-section { background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue) 100%); text-align: center; padding: 7rem 2rem; }
-  .rsvp-section .section-tag { color: var(--gold-light); }
-  .rsvp-section .section-title { color: white; }
+  .rsvp-section { background: linear-gradient(135deg, var(--gold-pale) 0%, var(--gold-light) 100%); text-align: center; padding: 7rem 2rem; }
+  .rsvp-section .section-tag { color: var(--blue-deep); font-weight:700; }
+  .rsvp-section .section-title { color: var(--blue-deep); }
   .rsvp-section .gold-rule { margin-left: auto; margin-right: auto; }
-  .rsvp-section .section-body { color: rgba(168,200,224,0.8); margin: 0 auto 3rem; }
+  .rsvp-section .section-body { color: #000; margin: 0 auto 3rem; }
   .rsvp-form { max-width: 520px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .rsvp-input { width: 100%; padding: 0.9rem 1.2rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(201,168,76,0.4); border-radius: 3px; color: white; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; outline: none; transition: border-color 0.2s; }
-  .rsvp-input::placeholder { color: rgba(255,255,255,0.4); }
+  .rsvp-input { width: 100%; padding: 0.9rem 1.2rem; background: rgba(255,255,255,0.3); border: 1px solid rgba(201,168,76,0.4); border-radius: 3px; color: var(--text-muted); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; outline: none; transition: border-color 0.2s; }
+  .rsvp-input::placeholder { color: var(--text-muted); }
   .rsvp-input:focus { border-color: var(--gold); }
-  .rsvp-select { width: 100%; padding: 0.9rem 1.2rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(201,168,76,0.4); border-radius: 3px; color: white; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; outline: none; appearance: none; }
+  .rsvp-select { width: 100%; padding: 0.9rem 1.2rem; background: rgba(255,255,255,0.3); border: 1px solid rgba(201,168,76,0.4); border-radius: 3px; color: var(--text-muted); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; outline: none; appearance: none; }
   .rsvp-select option { background: var(--blue-deep); color: white; }
-  .rsvp-btn { padding: 1rem 3rem; background: var(--gold); border: none; border-radius: 3px; color: white; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
+  .rsvp-btn { padding: 1rem 3rem; background: var(--blue); border: none; border-radius: 3px; color: white; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
   .rsvp-btn:hover { background: var(--blue-deep); }
-  .rsvp-success { display: none; padding: 2rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(201,168,76,0.5); border-radius: 4px; color: var(--gold-light); font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; }
+  .rsvp-success { display: none; padding: 2rem; background: rgba(255,255,255,0.3); border: 1px solid rgba(201,168,76,0.5); border-radius: 4px; color: var(--gold-light); font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; }
+  #result{ font-family: 'Cormorant Garamond', serif; font-size: 28px; font-style: italic; color: var(--blue-deep);
+    font-weight: 700; }
 
   footer { background: var(--text); padding: 3rem 2rem; text-align: center; color: rgba(255,255,255,0.4); font-size: 0.75rem; letter-spacing: 0.1em; }
   .footer-names { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic; color: var(--gold-light); margin-bottom: 0.75rem; }
@@ -188,17 +223,18 @@
 <nav>
   <div class="nav-brand">D & T</div>
   <ul class="nav-links">
+    <li><a href="#rsvp">RSVP</a></li>
+    <li><a href="#registry">Registry</a></li>
     <li><a href="#story">Our Story</a></li>
     <li><a href="#venue">Venue</a></li>
     <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#registry">Registry</a></li>
-    <li><a href="#rsvp">RSVP</a></li>
   </ul>
 </nav>
 
 <section class="hero">
+  <div class="hero-parallax-bg"></div>
   <div class="hero-ornament">Together Forever</div>
-  <h1>Dave &amp; <em>Tori</em></h1>
+  <h1>David &amp; Tori</h1>
   <div class="hero-divider">✦</div>
   <div class="hero-date">November 6, 2026</div>
   <div class="hero-venue">BlueBird Manor · Adamstown, Maryland</div>
@@ -216,7 +252,7 @@
 </div>
 
 <!-- PASSWORD GATE (shared for both registry + rsvp) -->
-<div class="gate-section" id="gate">
+<!--<div class="gate-section" id="gate">
   <div class="gate-inner">
     <div class="gate-icon">
       <svg class="gate-lock" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -232,22 +268,7 @@
     </div>
     <div class="gate-error" id="gateError">That code doesn't seem right — try again.</div>
   </div>
-</div>
-
-<!-- REGISTRY (gated) -->
-<section class="registry-section gated-content" id="registry">
-  <div class="section-inner">
-    <span class="section-tag reveal">Gift Registry</span>
-    <h2 class="section-title reveal">Help Us Begin Our New Chapter</h2>
-    <div class="gold-rule reveal"></div>
-    <p class="section-body reveal">Your presence is truly the greatest gift. For those who wish to celebrate with a gift, we've set up our registry on Amazon — simply click below to browse our list.</p>
-    <div class="registry-amazon-card reveal">
-      <div class="registry-amazon-logo">Amazon Registry</div>
-      <div class="registry-amazon-desc">Browse our full wish list — from home essentials to special keepsakes — and find something that feels right. All items ship directly to us.</div>
-      <a class="registry-link-btn" href="https://www.amazon.com/wedding/guest-view/28KDL63EOENOF" target="_blank">View Our Registry →</a>
-    </div>
-  </div>
-</section>
+</div>-->
 
 <!-- RSVP (gated) -->
 <section class="rsvp-section gated-content" id="rsvp">
@@ -255,29 +276,46 @@
     <span class="section-tag">RSVP</span>
     <h2 class="section-title">Will You Join Us?</h2>
     <div class="gold-rule" style="margin:1rem auto 1rem;"></div>
-    <p class="section-body">Please RSVP by September 1, 2026. We can't wait to celebrate with you!</p>
-    <form class="rsvp-form" id="rsvpForm" onsubmit="submitRSVP(event)">
+    <p class="section-body">Please RSVP by September 6th, 2026. We can't wait to celebrate with you!</p>
+    <form class="rsvp-form" id="rsvpForm" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="b8b058c0-140e-44b4-abce-163254249e52">
       <div class="form-row">
-        <input type="text" class="rsvp-input" placeholder="First Name" required>
-        <input type="text" class="rsvp-input" placeholder="Last Name" required>
+        <input type="text" name="first_name" class="rsvp-input" placeholder="First Name" required>
+        <input type="text" name="last_name" class="rsvp-input" placeholder="Last Name" required>
       </div>
-      <input type="email" class="rsvp-input" placeholder="Email Address">
-      <select class="rsvp-select">
+      <input type="email" name="email" class="rsvp-input" placeholder="Email Address">
+      <select name="guests" class="rsvp-select" required>
         <option value="">Number of Guests</option>
         <option value="1">1 Guest</option>
         <option value="2">2 Guests</option>
         <option value="3">3 Guests</option>
         <option value="4">4 Guests</option>
       </select>
-      <select class="rsvp-select">
+      <select name="attendance" class="rsvp-select">
         <option value="">Attendance</option>
         <option value="yes">Joyfully Accepts</option>
         <option value="no">Regretfully Declines</option>
       </select>
-      <input type="text" class="rsvp-input" placeholder="Dietary restrictions or notes (optional)">
+      <input type="text" name="dietary_restrictions" class="rsvp-input" placeholder="Dietary restrictions or notes (optional)">
       <button type="submit" class="rsvp-btn">Send RSVP</button>
+      <div id="result"></div>
     </form>
     <div class="rsvp-success" id="rsvpSuccess">Thank you! We'll see you on November 6th ✦</div>
+  </div>
+</section>
+
+<!-- REGISTRY (gated) -->
+<section class="registry-section gated-content" id="registry">
+  <div class="section-inner">
+    <span class="section-tag reveal">Gift Registry</span>
+    <h2 class="section-title reveal">Help Us Begin Our New Chapter</h2>
+    <div class="gold-rule reveal"></div>
+    <p class="section-body reveal">Your presence is truly the greatest gift. For those who wish to celebrate with a gift, we've set up our registry on Amazon, simply click below to browse our list.</p>
+    <div class="registry-amazon-card reveal">
+      <div class="registry-amazon-logo">Amazon Registry</div>
+      <div class="registry-amazon-desc">Browse our full wish list: from home essentials to special keepsakes, and find something that feels right. All items ship directly to us.</div>
+      <a class="registry-link-btn" href="https://www.amazon.com/wedding/guest-view/28KDL63EOENOF" target="_blank">View Our Registry →</a>
+    </div>
   </div>
 </section>
 
@@ -286,36 +324,35 @@
     <div class="story-image-placeholder">
       <div class="gallery-placeholder-bg"></div>
       <div class="gallery-placeholder-text">
-        <div style="font-size:2rem;opacity:0.3;margin-bottom:0.5rem">📷</div>
-        Add a photo here
       </div>
     </div>
     <div>
       <span class="section-tag reveal">Our Story</span>
       <h2 class="section-title reveal">A love worth celebrating</h2>
       <div class="gold-rule reveal"></div>
-      <p class="section-body reveal">David and Tori's love story is one for the ages. From the first moment they met to this beautiful moment of saying "I do," every chapter has been written with joy, laughter, and an unshakeable bond.</p>
+      <p class="section-body reveal">David and Tori's love story has crossed oceans of time to find each other. Their unbreakable bond started with a simple Taco date and has grown stronger to blossom into the beautiful relationship they share today.</p>
       <br>
-      <p class="section-body reveal" style="margin-top:0">On November 6th, 2026, surrounded by the people they love most, David Shayne and Tori Mathena will become forever partners — at the stunning BlueBird Manor in Adamstown, Maryland.</p>
+      <p class="section-body reveal" style="margin-top:0">On November 6th, 2026, surrounded by the people they love most, David Shayne and Tori Mathena fates will become forever entwined, standing under the Willow Tree in BlueBird Manor.</p>
     </div>
   </div>
 </section>
 
 <section class="venue-section" id="venue">
+  <div class="venue-parallax-bg"></div>
   <div class="section-inner">
-    <span class="section-tag reveal">Where We'll Say I Do</span>
+    <span class="section-tag reveal">Wedding Venue</span>
     <h2 class="section-title reveal">BlueBird Manor</h2>
     <div class="gold-rule reveal"></div>
-    <p class="section-body reveal">A breathtaking barn estate nestled in the Maryland countryside — the perfect backdrop for the beginning of our forever.</p>
+    <p class="section-body reveal">A breathtaking barn estate right next to Maryland countryside, the perfect backdrop for the beginning of our everlasting love.</p>
     <div class="venue-image-large reveal">
       <img src="https://media-api.xogrp.com/images/97c7c721-a2f3-4652-8f0c-19f1cd2b89db~sc_1524.1017?quality=90" alt="BlueBird Manor" onerror="this.style.display='none'">
       <div class="venue-image-caption">BlueBird Manor · 1765A Greenfield Rd, Adamstown, MD</div>
     </div>
     <div class="venue-details reveal">
       <div class="venue-detail-card"><div class="label">Date</div><div class="value">November 6, 2026</div></div>
-      <div class="venue-detail-card"><div class="label">Venue</div><div class="value">BlueBird Manor</div></div>
+      <div class="venue-detail-card"><div class="label">Lodging</div><div class="value"><a href="https://maps.app.goo.gl/u4pD9sxR8WUDmGBW8" style="color: #6d1e8d;text-decoration:none;" target="_blank">Homewood Suites by Hilton Frederick</a></div></div>
       <div class="venue-detail-card"><div class="label">Address</div><div class="value">1765A Greenfield Rd<br>Adamstown, MD</div></div>
-      <div class="venue-detail-card"><div class="label">Directions</div><div class="value" style="font-size:0.9rem"><a href="https://maps.google.com/?q=1765A+Greenfield+Rd+Adamstown+MD" style="color:var(--blue);text-decoration:none;">Open in Google Maps →</a></div></div>
+      <div class="venue-detail-card"><div class="label">Directions</div><div class="value"><a href="https://maps.google.com/?q=1765A+Greenfield+Rd+Adamstown+MD" target="_blank" style="color: #6d1e8d;;text-decoration:none;">Open in Google Maps →</a></div></div>
     </div>
   </div>
 </section>
@@ -325,23 +362,29 @@
     <span class="section-tag reveal">Memories</span>
     <h2 class="section-title reveal">Our Gallery</h2>
     <div class="gold-rule reveal"></div>
-    <p class="section-body reveal">A few of our favorite moments — more to come as we count down to the big day.</p>
+    <p class="section-body reveal">A few of our favorite moments. These are the key memories we'll cherish forever.</p>
     <div class="gallery-grid reveal">
-      <div class="gallery-cell" style="min-height:360px">
-        <div class="gallery-placeholder-bg"></div>
-        <div class="gallery-placeholder-text" style="text-align:center;padding:1rem"><div style="font-size:2.5rem;opacity:0.25;margin-bottom:0.5rem">📷</div>Featured photo</div>
+      <div class="gallery-cell" style="min-height:360px" onclick="openLightbox(0)">
+        <img src="./images/gallery1.jpg" alt="Gallery photo 1">
         <div class="gallery-overlay">View</div>
       </div>
-      <div class="gallery-cell"><div class="gallery-placeholder-bg"></div><div class="gallery-placeholder-text">📷 Photo</div><div class="gallery-overlay">View</div></div>
-      <div class="gallery-cell"><div class="gallery-placeholder-bg"></div><div class="gallery-placeholder-text">📷 Photo</div><div class="gallery-overlay">View</div></div>
-      <div class="gallery-cell"><div class="gallery-placeholder-bg"></div><div class="gallery-placeholder-text">📷 Photo</div><div class="gallery-overlay">View</div></div>
-      <div class="gallery-cell"><div class="gallery-placeholder-bg"></div><div class="gallery-placeholder-text">📷 Photo</div><div class="gallery-overlay">View</div></div>
+      <div class="gallery-cell" onclick="openLightbox(1)"><img src="./images/gallery2.jpg" alt="Gallery photo 2"><div class="gallery-overlay">View</div></div>
+      <div class="gallery-cell" onclick="openLightbox(2)"><img src="./images/gallery3.jpg" alt="Gallery photo 3"><div class="gallery-overlay">View</div></div>
+      <div class="gallery-cell" onclick="openLightbox(3)"><img src="./images/gallery4.jpg" alt="Gallery photo 4"><div class="gallery-overlay">View</div></div>
+      <div class="gallery-cell" onclick="openLightbox(4)"><img src="./images/gallery5.jpg" alt="Gallery photo 5"><div class="gallery-overlay">View</div></div>
     </div>
   </div>
 </section>
 
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); lightboxNav(-1)">&#8249;</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); lightboxNav(1)">&#8250;</button>
+</div>
+
 <footer>
-  <div class="footer-names">David &amp; Victoria Shayne</div>
+  <div class="footer-names">David &amp; Tori Shayne</div>
   <div>November 6, 2026 · BlueBird Manor · Adamstown, Maryland</div>
   <div style="margin-top:0.5rem;opacity:0.3">Made with love</div>
 </footer>
@@ -358,12 +401,27 @@
   }
   updateCountdown(); setInterval(updateCountdown, 1000);
 
+  const heroBg = document.querySelector('.hero-parallax-bg');
+  const venueBg = document.querySelector('.venue-parallax-bg');
+  const venueSection = document.getElementById('venue');
+
+  window.addEventListener('scroll', () => {
+    if (heroBg) {
+      heroBg.style.transform = `translateY(${window.pageYOffset * 0.6}px)`;
+    }
+    if (venueBg && venueSection) {
+      const rect = venueSection.getBoundingClientRect();
+      const offset = (window.innerHeight - rect.top) * 0.5;
+      venueBg.style.transform = `translateY(${offset}px)`;
+    }
+  }, { passive: true });
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); observer.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  function checkGate() {
+  /*function checkGate() {
     const val = document.getElementById('gateInput').value.trim().toUpperCase();
     const err = document.getElementById('gateError');
     const row = document.getElementById('gateRow');
@@ -384,11 +442,69 @@
       row.classList.add('gate-shake');
       setTimeout(() => err.classList.remove('show'), 3000);
     }
-  }
+  }*/
 
-  function submitRSVP(e) {
-    e.preventDefault();
-    document.getElementById('rsvpForm').style.display = 'none';
-    document.getElementById('rsvpSuccess').style.display = 'block';
+  const galleryImages = ['./images/gallery1.jpg','./images/gallery2.jpg','./images/gallery3.jpg','./images/gallery4.jpg','./images/gallery5.jpg'];
+  let lightboxIndex = 0;
+  function openLightbox(i) {
+    lightboxIndex = i;
+    document.getElementById('lightboxImg').src = galleryImages[i];
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeLightboxOutside(e) { if (e.target === document.getElementById('lightbox')) closeLightbox(); }
+  function lightboxNav(dir) {
+    lightboxIndex = (lightboxIndex + dir + galleryImages.length) % galleryImages.length;
+    document.getElementById('lightboxImg').src = galleryImages[lightboxIndex];
+  }
+  document.addEventListener('keydown', (e) => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lightboxNav(-1);
+    if (e.key === 'ArrowRight') lightboxNav(1);
+  });
+
+  const form = document.getElementById('rsvpForm');
+  const result = document.getElementById('result');
+const submitBtn = form.querySelector('button[type="submit"]');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    const originalText = submitBtn.textContent;
+
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
+
+    try {
+        fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        }).then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+                result.innerHTML = "Thank you for your RSVP! We can't wait to celebrate with you on November 6th! 🕺";
+            } else {
+                console.log(response);
+                result.innerHTML = json.message;
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            result.innerHTML = "Something went wrong!";
+        });
+
+    } catch (error) {
+        alert("Something went wrong. Please try again.");
+    } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }
+});
 </script>
